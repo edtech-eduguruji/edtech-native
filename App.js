@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import {StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Login from './src/layouts/Login';
+import config from 'react-native-config';
+
+console.log(JSON.parse(config.ROLES).length);
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme();
