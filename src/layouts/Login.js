@@ -13,7 +13,6 @@ export default function Login() {
         <View style={styles.imgContainer}>
           <Image source={logo} />
         </View>
-
         <Form style={styles.formContainer}>
           <Item>
             <Input placeholder="Email" />
