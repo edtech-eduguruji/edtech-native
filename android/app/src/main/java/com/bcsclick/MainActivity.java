@@ -1,4 +1,4 @@
-package com.edtechnative;
+package com.bcsclick.gps;
 
 import com.facebook.react.ReactActivity;
 

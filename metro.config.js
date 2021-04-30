@@ -1,9 +1,4 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const {getDefaultConfig} = require('metro-config');
 
 module.exports = {
   transformer: {
@@ -15,3 +10,17 @@ module.exports = {
     }),
   },
 };
+
+module.exports = (async () => {
+  const {
+    resolver: {sourceExts},
+  } = await getDefaultConfig();
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve('./transformer.js'),
+    },
+    resolver: {
+      sourceExts: [...sourceExts, 'scss', 'sass'],
+    },
+  };
+})();
