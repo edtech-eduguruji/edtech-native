@@ -43,10 +43,6 @@ dependencies {
 
 for more info visit https://github.com/luggit/react-native-config
 
-## To chnage the Splash Screen
-
-There is a component called "ParentContainer" where we give the path of the image
-
 ## To change the App Icon
 
 - Go to "android/app/src/main/res" path where you find "mipmap" folders

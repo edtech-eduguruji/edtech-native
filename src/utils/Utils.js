@@ -4,6 +4,7 @@ import React from 'react';
 import LocalStorage from '../common/LocalStorage';
 import {ToastAndroid} from 'react-native';
 import config from 'react-native-config';
+import {showLoader, hideLoader} from '../common/AppLoader';
 
 export function formatData(data, keys, actionItems, actionHandler, actionKey) {
   let result = [];
@@ -68,9 +69,13 @@ export function viewError(res) {
   }
 }
 
-export function addLoader() {}
+export function addLoader() {
+  showLoader();
+}
 
-export function removeLoader() {}
+export function removeLoader() {
+  hideLoader();
+}
 
 //It is used for delete confirmation
 export function deleteBox(message, handleAction) {}

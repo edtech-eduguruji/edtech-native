@@ -1,4 +1,4 @@
-import config from 'myconfig';
+import config from 'react-native-config';
 const BASE_URL = config.BASE_URL;
 const API_URL = config.APIURL;
 const URLS = {
