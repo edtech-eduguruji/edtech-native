@@ -1,26 +1,27 @@
 import {Button, Card, Container, Form, Input, Item, Text} from 'native-base';
 import React, {useState} from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import logo from '../../logos/eduguruji.png';
+import styles from '../css/App.scss';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <Container style={styles.container}>
-      <Card style={styles.card}>
-        <View style={styles.imgContainer}>
+    <Container style={styles.pad10}>
+      <Card style={styles.vtCenter}>
+        <View style={styles.alignCenter}>
           <Image source={logo} />
         </View>
-        <Form style={styles.formContainer}>
+        <Form style={styles.pad20}>
           <Item>
             <Input placeholder="Email" />
           </Item>
           <Item>
             <Input placeholder="Password" />
           </Item>
-          <View style={styles.loginBtn}>
+          <View style={styles.mgTop30}>
             <Button success full>
               <Text> Login </Text>
             </Button>
@@ -30,23 +31,3 @@ export default function Login() {
     </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-  card: {
-    marginTop: '40%',
-  },
-  imgContainer: {
-    marginBottom: 30,
-    alignItems: 'center',
-  },
-  formContainer: {
-    padding: 20,
-    marginBottom: 40,
-  },
-  loginBtn: {
-    marginTop: 50,
-  },
-});

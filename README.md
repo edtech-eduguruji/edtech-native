@@ -42,3 +42,28 @@ dependencies {
 (Note: For React Native 0.60 or greater, autolinking is available)
 
 for more info visit https://github.com/luggit/react-native-config
+
+## To chnage the Splash Screen
+
+There is a component called "ParentContainer" where we give the path of the image
+
+## To change the App Icon
+
+- Go to "android/app/src/main/res" path where you find "mipmap" folders
+- On each folder there are two files "squared" or "rounder"
+- Just replace all .png files of folders accoding to size.
+  (Note: Rounded icon must be placed there, Without rounded icon project will not run. )
+
+## TO change the App Name
+
+- Go to this path "android/app/src/main/res/values"
+- Open "String.xml" where you find the <string> tag related to app_name.
+- Change / Modify it to your new desired name.
+
+## To change Application Package Name
+
+- In android folder there are 7-8 files where we have to change the package name manually.
+- So to chnage the package name just simply go to "Search Tab" of Visual Code.
+- Enter the Old and New Package name and directly hit the "Replace All" Buttom.
+
+-- It will successfully change your application package name.

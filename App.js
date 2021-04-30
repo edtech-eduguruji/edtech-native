@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import ParentContainer from './src/layouts/ParentContainer';
+import Login from './src/layouts/Login';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <ParentContainer />
+      <Login />
     </View>
   );
 };
