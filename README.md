@@ -59,7 +59,80 @@ for more info visit https://github.com/luggit/react-native-config
 ## To change Application Package Name
 
 - In android folder there are 7-8 files where we have to change the package name manually.
-- So to chnage the package name just simply go to "Search Tab" of Visual Code.
+- To change the package name just simply go to "Search Tab" of Visual Code.
 - Enter the Old and New Package name and directly hit the "Replace All" Buttom.
 
 -- It will successfully change your application package name.
+
+
+## Build debug apk
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+- Without env file
+
+cd android && ./gradlew assembleDebug
+
+- To pass env file (if you have)
+
+ENVFILE=./config/.env.testguruji ./gradlew assembleDebug
+
+## Build release aab file with apk
+
+-- To create release aab file (may be require keystore to signing for production). It just bundle up and create a file.
+
+cd android && ./gradlew bundleRelease
+
+## To add/remove architecure based apk
+It help us to reduce the size of apk on playstore or when user download our app because according to architecure we got only that app not complete app
+
+folder : android->app->build.gradle
+add or remove this file to do so changes.
+
+def enableSeparateBuildPerCPUArchitecture = true
+
+## Run Proguard to shrink the Java bytecode in release builds.
+folder : android->app->build.gradle
+
+def enableProguardInReleaseBuilds = true
+
+
+## For getting error like 'out of memory exception'
+folder : android->gradle.properties
+add below line in the gradle.properties
+
+```
+org.gradle.jvmargs=-Xms1024m -Xmx4096m
+```
+
+## ToLocalString
+
+Option          Values          Sample output
+----------------------------------------------------
+weekday         'narrow'        'M'
+                'short'         'Mon'
+                'long'          'Monday'
+
+year            '2-digit'       '01'
+                'numeric'       '2001'
+
+month           '2-digit'       '01'
+                'numeric'       '1'
+                'narrow'        'J'
+                'short'         'Jan'
+                'long'          'January'
+
+day             '2-digit'       '01'
+                'numeric'       '1'
+
+hour            '2-digit'       '12 AM'
+                'numeric'       '12 AM'
+
+minute          '2-digit'       '0'
+                'numeric'       '0'
+
+second          '2-digit'       '0'
+                'numeric'       '0'
+
+timeZoneName    'short'         '1/1/2001 GMT+00:00'
+                'long'          '1/1/2001 GMT+00:00'

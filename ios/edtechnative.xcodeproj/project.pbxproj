@@ -30,6 +30,7 @@
 		69C6E209F57B438F8800840E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E13EA4477F94E0AB8651E84 /* Octicons.ttf */; };
 		057CF088ADAD42FDAFBE52F0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F9FBF41F5864D0EAC6FDB95 /* SimpleLineIcons.ttf */; };
 		D1EABFA1571D45EDB5E3AE5B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8ED82C7A613743FBBDA5426F /* Zocial.ttf */; };
+		9B22DFB404B94F6783143F62 /* libRNMobileRTC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F28B39ACC234A31BAF9BA32 /* libRNMobileRTC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		2E13EA4477F94E0AB8651E84 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8F9FBF41F5864D0EAC6FDB95 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8ED82C7A613743FBBDA5426F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F37207C5855A42C0A00C7798 /* RNMobileRTC.xcodeproj */ = {isa = PBXFileReference; name = "RNMobileRTC.xcodeproj"; path = "../node_modules/react-native-zoom-sdk/ios/RNMobileRTC.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		4F28B39ACC234A31BAF9BA32 /* libRNMobileRTC.a */ = {isa = PBXFileReference; name = "libRNMobileRTC.a"; path = "libRNMobileRTC.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A7E54459906DFAEB1900AA9 /* libPods-edtechnative.a in Frameworks */,
+				9B22DFB404B94F6783143F62 /* libRNMobileRTC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +157,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F37207C5855A42C0A00C7798 /* RNMobileRTC.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -524,6 +529,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/edtechnative.app/edtechnative";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-zoom-sdk/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -548,6 +561,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/edtechnative.app/edtechnative";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-zoom-sdk/ios",
+				);
 			};
 			name = Release;
 		};
@@ -574,6 +595,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-zoom-sdk/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -598,6 +623,10 @@
 				PRODUCT_NAME = edtechnative;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-zoom-sdk/ios",
+				);
 			};
 			name = Release;
 		};

@@ -9,7 +9,7 @@ const MESSAGES = {
   ATTEMPT: 'Are you sure you want to delete this attempt ?',
   QUESTION: 'Are you sure you want to delete this question ?',
   DOCUMENT: 'Are you sure you want to delete this document ?',
-  LIVECLASS: 'Are you sure you want to delete this live class ?',
+  // LIVECLASS: 'Are you sure you want to delete this live class ?',
   VIDEOLECTURE: 'Are you sure you want to delete this video lecture ?',
   CIRCULAR: 'Are you sure you want to delete this circular ?',
   ASSIGNMENT: 'Are you sure you want to delete this assignment ?',
@@ -25,6 +25,10 @@ const MESSAGES = {
     'Pending answer sheets will be Un-Allotted from this teacher, Press Confirm to proceed ?',
   FINISH_COPY_CHECK:
     'Are you sure you want to finish copy checking, Press confirm to submit answer sheet ?',
-};
+  LIVECLASS: {
+    CONNECT_ERROR:
+      'Please try to connect back again. Contact administrator/teacher'
+  }
+}
 
-export default MESSAGES;
+export default MESSAGES

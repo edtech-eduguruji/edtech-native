@@ -1,30 +1,52 @@
-import {Button, Card, Container, Form, Input, Item, Text} from 'native-base';
-import React, {useState} from 'react';
-import {View, Image} from 'react-native';
-import styles from '../css/App.scss';
-import config from 'react-native-config';
-import logos from '../../logos/Logos';
-import LoginApi from '../apis/LoginApi';
+import {Button, Card, Container, Form, Input, Item, Text} from 'native-base'
+import React, {useState} from 'react'
+import {View, Image} from 'react-native'
+import config from 'react-native-config'
+import styles from '../css/App.scss'
+import logos from '../../logos/Logos'
+import LoginApi from '../apis/LoginApi'
+import LocalStorage from '../common/LocalStorage'
+import {addErrorMsg} from '../utils/Utils'
+import {AuthContext} from '../../App'
 
-export default function Login() {
-  const [fields, setFields] = useState({});
+export default function Login({navigation}) {
+  const {signIn, setLoading} = React.useContext(AuthContext)
+  const [fields, setFields] = useState({})
 
   const handleLogin = () => {
-    const {email, password} = fields;
-    LoginApi.userLogin({t1: email, t2: password}).then(res => {
-      console.log(res);
-    });
-  };
+    const {email, password} = fields
+    setLoading()
+    LoginApi.userLogin({t1: email, t2: password})
+      .then(response => {
+        if (response && response.status === 200 && response.data.length > 0) {
+          const user = response.data[0]
+          if (JSON.parse(config.ROLES).includes(user.role)) {
+            return user
+          } else {
+            throw new Error('Login details are invalid.')
+          }
+        }
+      })
+      .then(async user => {
+        if (user) {
+          LocalStorage.setUser(user)
+          signIn(user)
+        }
+      })
+      .catch(err => {
+        addErrorMsg(err.message)
+      })
+  }
 
   const handleChangeField = (id, value) => {
     if (id) {
-      setFields({...fields, [id]: value});
+      setFields({...fields, [id]: value})
     }
-  };
+  }
 
   return (
-    <Container style={styles.pad10}>
-      <Card style={styles.vtCenter}>
+    <Container style={[styles.viewCenter, styles.pad10]}>
+      <Card>
         <View style={styles.alignCenter}>
           <Image source={logos[config.LOGO]} />
         </View>
@@ -51,5 +73,5 @@ export default function Login() {
         </Form>
       </Card>
     </Container>
-  );
+  )
 }

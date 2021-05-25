@@ -1,26 +1,26 @@
-const {getDefaultConfig} = require('metro-config');
+const {getDefaultConfig} = require('metro-config')
 
 module.exports = {
   transformer: {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: true,
-      },
-    }),
-  },
-};
+        inlineRequires: true
+      }
+    })
+  }
+}
 
 module.exports = (async () => {
   const {
-    resolver: {sourceExts},
-  } = await getDefaultConfig();
+    resolver: {sourceExts}
+  } = await getDefaultConfig()
   return {
     transformer: {
-      babelTransformerPath: require.resolve('./transformer.js'),
+      babelTransformerPath: require.resolve('./transformer.js')
     },
     resolver: {
-      sourceExts: [...sourceExts, 'scss', 'sass'],
-    },
-  };
-})();
+      sourceExts: [...sourceExts, 'scss', 'sass']
+    }
+  }
+})()

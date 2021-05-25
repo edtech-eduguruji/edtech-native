@@ -1,39 +1,35 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {isJSON} from './../utils/Utils';
+// import AsyncStorage from '@react-native-async-storage/async-storage'
+import SyncStorage from 'sync-storage'
+// eslint-disable-next-line import/no-cycle
+import {isJSON} from '../utils/Utils'
 
 const LocalStorage = () => {
   return {
     setUser(obj) {
-      AsyncStorage.setItem('user_obj', JSON.stringify(obj));
+      SyncStorage.set('user_obj', JSON.stringify(obj))
     },
     getUser() {
-      return (
-        AsyncStorage.getItem('user_obj') &&
-        isJSON(AsyncStorage.getItem('user_obj')) &&
-        JSON.parse(AsyncStorage.getItem('user_obj'))
-      );
+      const user = SyncStorage.get('user_obj')
+      return user && isJSON(user) && JSON.parse(user)
     },
     removeUser() {
-      AsyncStorage.removeItem('user_obj');
+      SyncStorage.remove('user_obj')
     },
     setClasses(obj) {
-      AsyncStorage.setItem('classes', JSON.stringify(obj));
+      SyncStorage.set('classes', JSON.stringify(obj))
     },
     getClasses() {
-      return (
-        AsyncStorage.getItem('classes') &&
-        isJSON(AsyncStorage.getItem('classes')) &&
-        JSON.parse(AsyncStorage.getItem('classes'))
-      );
+      const cls = SyncStorage.get('classes')
+      return cls && isJSON(cls) && JSON.parse(cls)
     },
     removeClasses() {
-      AsyncStorage.removeItem('classes');
+      SyncStorage.remove('classes')
     },
     getLogout() {
-      this.removeUser();
-      this.removeClasses();
-    },
-  };
-};
+      this.removeUser()
+      this.removeClasses()
+    }
+  }
+}
 
-export default new LocalStorage();
+export default new LocalStorage()

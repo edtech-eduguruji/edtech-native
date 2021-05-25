@@ -18,6 +18,8 @@ target 'edtechnative' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'RNZoomUs', :path => '../node_modules/react-native-zoom-us'
+
   target 'edtechnativeTests' do
     inherit! :complete
     # Pods for testing

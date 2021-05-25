@@ -1,8 +1,20 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
     "prettier.semi": false,
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.codeActionsOnSaveTimeout": 20000,
+    "editor.formatOnSave": false,
+    "eslint.enable": true,
+    "eslint.format.enable": true,
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+    ],
+    "eslint.run": "onSave",
+    "eslint.codeActionsOnSave.mode": "problems",
 }

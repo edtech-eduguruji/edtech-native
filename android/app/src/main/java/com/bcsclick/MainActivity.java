@@ -1,4 +1,4 @@
-package com.bcsclick.gps;
+package io.edtech.testguruji;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
