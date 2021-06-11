@@ -2,34 +2,49 @@ import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import config from 'react-native-config'
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native'
 import SplashScreen from 'react-native-splash-screen'
 import SyncStorage from 'sync-storage'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {View, TouchableOpacity, Text} from 'react-native'
 import Login from './src/layouts/Login'
-
-// views
-import Menu from './src/layouts/Menu'
-import Documents from './src/views/student/documents/Documents'
-import Quiz from './src/views/student/quiz/Quiz'
-import LiveClass from './src/views/student/liveclass/LiveClass'
 import LocalStorage from './src/common/LocalStorage'
 import appRoutes from './src/layouts/Routes'
 import withLoggedIn from './src/layouts/EnhanceLoggedIn'
-import ModalScreen from './src/common/ModalScreen'
-import Lectures from './src/views/student/lectures/Lectures'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 
-function HomeStackNavigator() {
+const Logout = () => {}
+
+function HomeNavigation({role}) {
+  const routesLink = appRoutes.map(item => {
+    if (role) {
+      if (
+        item.role.includes(role) &&
+        JSON.parse(config.MODULES).includes(item.id) &&
+        !item.isSidebar
+      ) {
+        return (
+          <Stack.Screen
+            key={item.id}
+            name={item.name}
+            component={item.component}
+          />
+        )
+      }
+    }
+    return null
+  })
   return (
-    <Stack.Navigator mode="card" screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Documents" component={Documents} />
-      <Stack.Screen name="LiveClass" component={LiveClass} />
-      <Stack.Screen name="Lectures" component={Lectures} />
-      <Stack.Screen name="Quiz" component={Quiz} />
+    <Stack.Navigator
+      mode="card"
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#2eb82e'
+        },
+        headerTintColor: '#fff'
+      }}>
+      {routesLink}
     </Stack.Navigator>
   )
 }
@@ -47,7 +62,9 @@ function AppNavigation({role}) {
             key={item.id}
             name={item.name}
             options={{
-              drawerIcon: () => <Icon name={item.icon} size={30} color="#900" />
+              drawerIcon: () => (
+                <Icon name={item.icon} size={15} color="#2eb82e" />
+              )
             }}>
             {val => <item.component {...val} />}
           </Drawer.Screen>
@@ -63,30 +80,17 @@ function AppNavigation({role}) {
       minSwipeDistance={100}
       drawerStyle={{
         width: 240
-      }}
-      // initialRouteName="Calendar"
-      // drawerContent={props => <Menu {...props} />}
-    >
+      }}>
       {routesLink}
       <Drawer.Screen
-        name="test"
-        component={HomeStackNavigator}
+        name="Logout"
+        component={Logout}
         options={{
-          drawerLabel: '',
-          title: '',
-          headerTitle: '',
-          headerShown: false
-        }}></Drawer.Screen>
+          drawerIcon: () => <Icon name="logout" size={15} color="#2eb82e" />
+        }}
+      />
     </Drawer.Navigator>
   )
-}
-
-function getHeaderTitle(route) {
-  // If the focused route is not found, we need to assume it's the initial screen
-  // This can happen during if there hasn't been any navigation inside the screen
-  // In our case, it's "Feed" as that's the first screen inside the navigator
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Dashboard'
-  return routeName
 }
 
 export const AuthContext = React.createContext()
@@ -184,34 +188,23 @@ const App = () => {
         ) : (
           <>
             <Stack.Screen
-              name="student"
-              options={({route}) => ({
-                headerTitle: getHeaderTitle(route),
-                headerLeft: () => <MenuButton on />
-              })}
+              name="Sidebar"
+              options={{
+                headerShown: false
+              }}
               component={withLoggedIn(AppNavigation)}
             />
             <Stack.Screen
-              name="modal"
-              options={({route}) => ({
-                headerLeft: () => <MenuButton on />
+              name="Home"
+              options={() => ({
+                headerShown: false
               })}
-              component={withLoggedIn(ModalScreen)}
+              component={withLoggedIn(HomeNavigation)}
             />
           </>
         )}
       </Stack.Navigator>
     </AuthContext.Provider>
-  )
-}
-
-const MenuButton = props => {
-  return (
-    <View>
-      <TouchableOpacity>
-        <Icon name="dashboard" size={30} color="#900" />
-      </TouchableOpacity>
-    </View>
   )
 }
 

@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "testeduruji": "ENVFILE=./config/.env.testguruji react-native run-android"
+    "testeduguruji_mac" : "ENVFILE=./config/.env.testguruji react-native run-android",
+    "testeduguruji_win": "SET ENVFILE=./config/.env.testguruji && react-native run-android",
+    "debug": "SET ENVFILE=./config/.env.testguruji && cd android && gradlew assembleDebug",
+    "bundleRelease": "SET ENVFILE=./config/.env.testguruji && cd android && gradlew bundleRelease"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.4",
@@ -21,6 +25,7 @@
     "datejs": "^1.0.0-rc3",
     "native-base": "^2.15.2",
     "node-sass": "^5.0.0",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-config": "^1.4.2",
