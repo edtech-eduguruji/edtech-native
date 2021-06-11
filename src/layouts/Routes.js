@@ -7,7 +7,7 @@ import Lectures from '../views/student/lectures/Lectures'
 import LiveClass from '../views/student/liveclass/LiveClass'
 import Quiz from '../views/student/quiz/Quiz'
 import Assignment from '../views/student/assignment/Assignment'
-// import Circulars from '../views/student/circulars/Circulars'
+import Circulars from '../views/student/circulars/Circulars'
 
 const appRoutes = [
   {
@@ -21,15 +21,6 @@ const appRoutes = [
     isSidebar: true
   },
   {
-    path: '/changePassword',
-    name: 'Change Password',
-    id: 'changePassword',
-    component: ChangePassword,
-    layout: '/teacher',
-    role: [ROLES_KEY.ADMIN, ROLES_KEY.TEACHER, ROLES_KEY.STUDENT],
-    isSidebar: true
-  },
-  {
     path: '/profile',
     name: 'Profile',
     id: 'sProfile',
@@ -39,6 +30,17 @@ const appRoutes = [
     role: [ROLES_KEY.STUDENT],
     isSidebar: true
   },
+  {
+    path: '/changePassword',
+    name: 'Change Password',
+    id: 'changePassword',
+    icon: 'lock',
+    component: ChangePassword,
+    layout: '/teacher',
+    role: [ROLES_KEY.ADMIN, ROLES_KEY.TEACHER, ROLES_KEY.STUDENT],
+    isSidebar: true
+  },
+
   {
     path: '/studymaterial',
     name: 'Study Material',
@@ -71,7 +73,7 @@ const appRoutes = [
   },
   {
     path: '/quizzes',
-    name: 'Attend Quiz',
+    name: 'Quiz',
     id: 'sQuiz',
     icon: 'wbincandescent',
     component: Quiz,
@@ -94,7 +96,7 @@ const appRoutes = [
     name: 'Circulars',
     id: 'sCircular',
     icon: 'update',
-    // component: Circulars,
+    component: Circulars,
     layout: '/student',
     role: [ROLES_KEY.STUDENT],
     isSidebar: false

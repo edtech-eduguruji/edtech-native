@@ -6,6 +6,7 @@ import config from 'react-native-config'
 import {ROLES_KEY} from '../constants/Constants'
 import LocalStorage from '../common/LocalStorage'
 import {showLoader, hideLoader} from '../common/AppLoader'
+import {getFocusedRouteNameFromRoute} from '@react-navigation/core'
 
 export function formatData(data, keys, actionItems, actionHandler, actionKey) {
   const result = []
@@ -342,4 +343,9 @@ export function checkExtension(fileName) {
   return fileName
     ? fileName.substring(fileName.length - 3, fileName.length)
     : null
+}
+
+export function getHeaderTitle(route) {
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Dashboard'
+  return routeName
 }
