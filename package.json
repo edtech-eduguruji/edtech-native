@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "testeduguruji_mac" : "ENVFILE=./config/.env.testguruji react-native run-android",
+    "testeduguruji_mac": "ENVFILE=./config/.env.testguruji react-native run-android",
     "testeduguruji_win": "SET ENVFILE=./config/.env.testguruji && react-native run-android",
     "debug": "SET ENVFILE=./config/.env.testguruji && cd android && gradlew assembleDebug",
     "bundleRelease": "SET ENVFILE=./config/.env.testguruji && cd android && gradlew bundleRelease"

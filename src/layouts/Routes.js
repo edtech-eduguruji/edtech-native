@@ -18,7 +18,7 @@ const appRoutes = [
     component: Dashboard,
     layout: '/student',
     role: [ROLES_KEY.STUDENT],
-    isSidebar: true
+    isSidebar: false
   },
   {
     path: '/profile',
@@ -40,7 +40,6 @@ const appRoutes = [
     role: [ROLES_KEY.ADMIN, ROLES_KEY.TEACHER, ROLES_KEY.STUDENT],
     isSidebar: true
   },
-
   {
     path: '/studymaterial',
     name: 'Study Material',

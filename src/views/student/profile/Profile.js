@@ -7,7 +7,6 @@ import styles from '../../../css/App.scss'
 export default function Profile({navigation}) {
   return (
     <Container>
-      <CustomHeader navigation={navigation} title="Profile" />
       <Container style={[styles.viewCenter, styles.pad10]}>
         <Card>
           <View style={styles.alignCenter}>

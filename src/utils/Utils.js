@@ -3,10 +3,10 @@ import Axios from 'axios'
 import React from 'react'
 import {ToastAndroid} from 'react-native'
 import config from 'react-native-config'
-import {ROLES_KEY} from '../constants/Constants'
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native'
 import LocalStorage from '../common/LocalStorage'
 import {showLoader, hideLoader} from '../common/AppLoader'
-import {getFocusedRouteNameFromRoute} from '@react-navigation/core'
+import {ROLES_KEY} from '../constants/Constants'
 
 export function formatData(data, keys, actionItems, actionHandler, actionKey) {
   const result = []
@@ -346,6 +346,6 @@ export function checkExtension(fileName) {
 }
 
 export function getHeaderTitle(route) {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Dashboard'
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Ddashboard'
   return routeName
 }

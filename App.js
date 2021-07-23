@@ -5,15 +5,19 @@ import config from 'react-native-config'
 import SplashScreen from 'react-native-splash-screen'
 import SyncStorage from 'sync-storage'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {DrawerActions} from '@react-navigation/native'
 import Login from './src/layouts/Login'
 import LocalStorage from './src/common/LocalStorage'
 import appRoutes from './src/layouts/Routes'
 import withLoggedIn from './src/layouts/EnhanceLoggedIn'
+import {getHeaderTitle} from './src/utils/Utils'
 
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 
-const Logout = () => {}
+const Logout = () => {
+  return null
+}
 
 function HomeNavigation({role}) {
   const routesLink = appRoutes.map(item => {
@@ -28,6 +32,9 @@ function HomeNavigation({role}) {
             key={item.id}
             name={item.name}
             component={item.component}
+            options={({route, navigation}) => ({
+              headerTitle: getHeaderTitle(route)
+            })}
           />
         )
       }
@@ -37,13 +44,18 @@ function HomeNavigation({role}) {
   return (
     <Stack.Navigator
       mode="card"
-      screenOptions={{
+      options={({route, navigation}) => ({
+        title: getHeaderTitle(route)
+      })}
+      screenOptions={({route, navigation}) => ({
         headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: '#2eb82e'
+          backgroundColor: '#fff'
         },
-        headerTintColor: '#fff'
-      }}>
+        headerTintColor: '#000',
+        headerTitle: getHeaderTitle(route),
+        headerLeft: () => <MenuButton navigation={navigation} />
+      })}>
       {routesLink}
     </Stack.Navigator>
   )
@@ -73,6 +85,7 @@ function AppNavigation({role}) {
     }
     return null
   })
+  console.log(routesLink)
 
   return (
     <Drawer.Navigator
@@ -81,14 +94,10 @@ function AppNavigation({role}) {
       drawerStyle={{
         width: 240
       }}>
-      {routesLink}
       <Drawer.Screen
-        name="Logout"
-        component={Logout}
-        options={{
-          drawerIcon: () => <Icon name="logout" size={15} color="#2eb82e" />
-        }}
-      />
+        name="Home"
+        component={withLoggedIn(HomeNavigation)}></Drawer.Screen>
+      {routesLink}
     </Drawer.Navigator>
   )
 }
@@ -176,8 +185,8 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <Stack.Navigator mode="modal">
-        {state.userToken == null ? (
+      {state.userToken == null ? (
+        <Stack.Navigator mode="modal">
           <Stack.Screen
             name="login"
             component={Login}
@@ -185,27 +194,31 @@ const App = () => {
               headerShown: false
             }}
           />
-        ) : (
-          <>
-            <Stack.Screen
-              name="Sidebar"
-              options={{
-                headerShown: false
-              }}
-              component={withLoggedIn(AppNavigation)}
-            />
-            <Stack.Screen
+        </Stack.Navigator>
+      ) : (
+        <>
+          {/* <Drawer.Navigator
+            detachInactiveScreens
+            minSwipeDistance={100}
+            drawerStyle={{
+              width: 240
+            }}> */}
+          <AppNavigation role="STUDENT" />
+          {/* <Drawer.Screen
               name="Home"
-              options={() => ({
-                headerShown: false
-              })}
-              component={withLoggedIn(HomeNavigation)}
-            />
-          </>
-        )}
-      </Stack.Navigator>
+              component={withLoggedIn(HomeNavigation)}></Drawer.Screen> */}
+          {/* </Drawer.Navigator> */}
+        </>
+      )}
     </AuthContext.Provider>
   )
+}
+
+const MenuButton = ({route, navigation}) => {
+  const handleMenu = () => {
+    navigation.dispatch(DrawerActions.openDrawer())
+  }
+  return <Icon name="logout" size={15} color="#2eb82e" onPress={handleMenu} />
 }
 
 export default App
